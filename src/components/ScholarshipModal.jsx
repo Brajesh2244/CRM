@@ -96,21 +96,21 @@ export default function ScholarshipModal({ isOpen, onClose, onSave, editingSchol
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full border border-slate-200 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+      <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl max-w-2xl w-full border border-slate-200 dark:border-slate-800 overflow-hidden animate-in fade-in zoom-in-95 duration-150 transition-colors">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/50">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40">
           <div>
-            <h3 className="text-lg font-bold text-slate-900">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white">
               {editingScholarship ? 'Edit Scholarship' : 'Add New Scholarship'}
             </h3>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 dark:text-slate-400">
               Fill in the 9 scholarship parameters for the K12 Hunar CRM
             </p>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
+            className="p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -120,7 +120,7 @@ export default function ScholarshipModal({ isOpen, onClose, onSave, editingSchol
         <form onSubmit={handleSubmit} className="p-6 space-y-4 max-h-[80vh] overflow-y-auto">
           {/* 1. Scholarship Name */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">
               Scholarship Name <span className="text-rose-500">*</span>
             </label>
             <input
@@ -128,14 +128,14 @@ export default function ScholarshipModal({ isOpen, onClose, onSave, editingSchol
               placeholder="e.g. Post-Matric Scholarship BC EBC"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className={`w-full px-3.5 py-2.5 text-sm rounded-xl border bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 transition-all ${
+              className={`w-full px-3.5 py-2.5 text-sm rounded-xl border bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 transition-all ${
                 errors.name
                   ? 'border-rose-400 focus:ring-rose-500/20'
-                  : 'border-slate-200 focus:ring-indigo-500/20 focus:border-indigo-500'
+                  : 'border-slate-200 dark:border-slate-700 focus:ring-indigo-500/20 focus:border-indigo-500'
               }`}
             />
             {errors.name && (
-              <p className="flex items-center gap-1 text-xs text-rose-500 mt-1 font-medium">
+              <p className="flex items-center gap-1 text-xs text-rose-500 dark:text-rose-400 mt-1 font-medium">
                 <AlertCircle className="w-3.5 h-3.5" />
                 <span>{errors.name}</span>
               </p>
@@ -145,16 +145,16 @@ export default function ScholarshipModal({ isOpen, onClose, onSave, editingSchol
           {/* 2. State & 3. Provider */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">
                 <span className="inline-flex items-center gap-1">
-                  <MapPin className="w-3.5 h-3.5 text-slate-400" />
+                  <MapPin className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                   State <span className="text-rose-500">*</span>
                 </span>
               </label>
               <select
                 value={formData.state}
                 onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-                className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all cursor-pointer"
+                className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all cursor-pointer"
               >
                 <option value="Bihar">Bihar</option>
                 <option value="Haryana">Haryana</option>
@@ -164,9 +164,9 @@ export default function ScholarshipModal({ isOpen, onClose, onSave, editingSchol
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">
                 <span className="inline-flex items-center gap-1">
-                  <Building className="w-3.5 h-3.5 text-slate-400" />
+                  <Building className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                   Provider Name <span className="text-rose-500">*</span>
                 </span>
               </label>
@@ -175,14 +175,14 @@ export default function ScholarshipModal({ isOpen, onClose, onSave, editingSchol
                 placeholder="e.g. Welfare Department, Bihar"
                 value={formData.provider}
                 onChange={(e) => setFormData({ ...formData, provider: e.target.value })}
-                className={`w-full px-3.5 py-2.5 text-sm rounded-xl border bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 transition-all ${
+                className={`w-full px-3.5 py-2.5 text-sm rounded-xl border bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 transition-all ${
                   errors.provider
                     ? 'border-rose-400 focus:ring-rose-500/20'
-                    : 'border-slate-200 focus:ring-indigo-500/20 focus:border-indigo-500'
+                    : 'border-slate-200 dark:border-slate-700 focus:ring-indigo-500/20 focus:border-indigo-500'
                 }`}
               />
               {errors.provider && (
-                <p className="flex items-center gap-1 text-xs text-rose-500 mt-1 font-medium">
+                <p className="flex items-center gap-1 text-xs text-rose-500 dark:text-rose-400 mt-1 font-medium">
                   <AlertCircle className="w-3.5 h-3.5" />
                   <span>{errors.provider}</span>
                 </p>
@@ -193,16 +193,16 @@ export default function ScholarshipModal({ isOpen, onClose, onSave, editingSchol
           {/* 4. Applicable Class & 5. Status */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">
                 <span className="inline-flex items-center gap-1">
-                  <BookOpen className="w-3.5 h-3.5 text-slate-400" />
+                  <BookOpen className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                   Applicable Class <span className="text-rose-500">*</span>
                 </span>
               </label>
               <select
                 value={formData.applicableClass}
                 onChange={(e) => setFormData({ ...formData, applicableClass: e.target.value })}
-                className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all cursor-pointer"
+                className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all cursor-pointer"
               >
                 <option value="Class 1-10">Class 1-10 (Pre-Matric)</option>
                 <option value="Class 9-10">Class 9-10 (Secondary)</option>
@@ -212,13 +212,13 @@ export default function ScholarshipModal({ isOpen, onClose, onSave, editingSchol
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">
                 Status <span className="text-rose-500">*</span>
               </label>
               <select
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all cursor-pointer"
+                className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all cursor-pointer"
               >
                 <option value="Published">Published (Active for students)</option>
                 <option value="Draft">Draft (Internal review)</option>
@@ -229,7 +229,7 @@ export default function ScholarshipModal({ isOpen, onClose, onSave, editingSchol
 
           {/* 6. Amount or Benefit */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">
               Scholarship Amount or Benefit
             </label>
             <input
@@ -237,16 +237,16 @@ export default function ScholarshipModal({ isOpen, onClose, onSave, editingSchol
               placeholder="e.g. ₹10,000 one-time grant or 100% Tuition Fee waiver"
               value={formData.amountOrBenefit}
               onChange={(e) => setFormData({ ...formData, amountOrBenefit: e.target.value })}
-              className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+              className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
             />
           </div>
 
           {/* 7. Application Deadline & 8. Official Link */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">
                 <span className="inline-flex items-center gap-1">
-                  <Calendar className="w-3.5 h-3.5 text-slate-400" />
+                  <Calendar className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                   Application Deadline
                 </span>
               </label>
@@ -255,14 +255,14 @@ export default function ScholarshipModal({ isOpen, onClose, onSave, editingSchol
                 placeholder="e.g. 31 Dec 2026 or Not stated"
                 value={formData.deadline}
                 onChange={(e) => setFormData({ ...formData, deadline: e.target.value })}
-                className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">
                 <span className="inline-flex items-center gap-1">
-                  <LinkIcon className="w-3.5 h-3.5 text-slate-400" />
+                  <LinkIcon className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                   Official Application Link
                 </span>
               </label>
@@ -271,14 +271,14 @@ export default function ScholarshipModal({ isOpen, onClose, onSave, editingSchol
                 placeholder="https://pmsonline.bih.nic.in"
                 value={formData.officialLink}
                 onChange={(e) => setFormData({ ...formData, officialLink: e.target.value })}
-                className={`w-full px-3.5 py-2.5 text-sm rounded-xl border bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 transition-all ${
+                className={`w-full px-3.5 py-2.5 text-sm rounded-xl border bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 transition-all ${
                   errors.officialLink
                     ? 'border-rose-400 focus:ring-rose-500/20'
-                    : 'border-slate-200 focus:ring-indigo-500/20 focus:border-indigo-500'
+                    : 'border-slate-200 dark:border-slate-700 focus:ring-indigo-500/20 focus:border-indigo-500'
                 }`}
               />
               {errors.officialLink && (
-                <p className="flex items-center gap-1 text-xs text-rose-500 mt-1 font-medium">
+                <p className="flex items-center gap-1 text-xs text-rose-500 dark:text-rose-400 mt-1 font-medium">
                   <AlertCircle className="w-3.5 h-3.5" />
                   <span>{errors.officialLink}</span>
                 </p>
@@ -288,7 +288,7 @@ export default function ScholarshipModal({ isOpen, onClose, onSave, editingSchol
 
           {/* 9. Eligibility Criteria */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">
               Eligibility Criteria
             </label>
             <textarea
@@ -296,16 +296,16 @@ export default function ScholarshipModal({ isOpen, onClose, onSave, editingSchol
               placeholder="e.g. Must be a permanent resident of the state, family annual income under ₹2.5 Lakhs, enrolled in recognized institution."
               value={formData.eligibilityCriteria}
               onChange={(e) => setFormData({ ...formData, eligibilityCriteria: e.target.value })}
-              className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all resize-none"
+              className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all resize-none"
             />
           </div>
 
           {/* Modal Actions */}
-          <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
+          <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end gap-3">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-800 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer"
+              className="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
             >
               Cancel
             </button>

@@ -7,6 +7,7 @@ import ScholarshipCardView from './components/ScholarshipCardView';
 import ScholarshipModal from './components/ScholarshipModal';
 import StudentPreviewModal from './components/StudentPreviewModal';
 import { useScholarships } from './hooks/useScholarships';
+import { useDarkMode } from './hooks/useDarkMode';
 import { CheckCircle2, Info } from 'lucide-react';
 
 export default function App() {
@@ -19,6 +20,8 @@ export default function App() {
     deleteScholarship,
     resetToDefaults,
   } = useScholarships();
+
+  const { theme, toggleTheme } = useDarkMode();
 
   // Filters & Search State
   const [stateFilter, setStateFilter] = useState('All States');
@@ -106,31 +109,35 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-800">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col font-sans text-slate-800 dark:text-slate-100 transition-colors duration-200">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-5 right-5 z-50 flex items-center gap-2 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-xl border border-slate-700 text-sm animate-in fade-in slide-in-from-bottom-5">
+        <div className="fixed bottom-5 right-5 z-50 flex items-center gap-2 bg-slate-900 dark:bg-slate-800 text-white px-4 py-3 rounded-2xl shadow-xl border border-slate-700 text-sm animate-in fade-in slide-in-from-bottom-5">
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>{toastMessage}</span>
         </div>
       )}
 
       {/* Top Navigation */}
-      <Header onResetData={handleResetData} />
+      <Header
+        onResetData={handleResetData}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+      />
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page Banner / Title */}
         <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Scholarship Dashboard
             </h1>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
               Manage, review status, and preview student scholarships for Bihar, Haryana, and Jharkhand.
             </p>
           </div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-semibold self-start sm:self-auto">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 text-xs font-semibold self-start sm:self-auto">
             <Info className="w-4 h-4 text-indigo-500" />
             <span>Interactive Demo Ready</span>
           </div>
@@ -198,12 +205,12 @@ export default function App() {
       />
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
+      <footer className="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 mt-12 py-6 text-center text-xs text-slate-500 dark:text-slate-400 transition-colors">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p>
             K12 Hunar Frontend Assessment • <strong>Scholarship Management CRM Demo</strong>
           </p>
-          <div className="flex items-center gap-4 text-slate-400">
+          <div className="flex items-center gap-4 text-slate-400 dark:text-slate-500">
             <span>Bihar • Haryana • Jharkhand</span>
             <span>•</span>
             <span>React + Vite + Tailwind CSS</span>
