@@ -8,6 +8,7 @@ A modern, responsive frontend demo for the **Scholarship Management CRM** built 
 
 - **Live URL**: [Deployable directly to Vercel / Netlify / GitHub Pages]
 - **Framework**: React 19 + Vite 8 + Tailwind CSS v4 + Lucide React
+- **Design System**: **Modern Soft UI 2.0 (Neumorphic)** with tactile extruded surfaces, sunken inset inputs, interactive button physics, and crisp WCAG-compliant contrast.
 - **Themes**: Instant **Light Mode & Dark Mode** toggle with system preference detection and `localStorage` persistence.
 - **Data Store**: Seeded with the 9 official assessment records (`src/data/initialScholarships.json`), with persistent `localStorage` support across page refreshes.
 
