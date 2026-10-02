@@ -6,27 +6,31 @@ export default function StatusBadge({ status, onChangeStatus, interactive = true
     switch (st) {
       case 'Published':
         return {
-          bg: 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/60',
-          dot: 'bg-emerald-500',
+          textColor: 'text-emerald-700 dark:text-emerald-300',
+          dot: 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.7)]',
           icon: CheckCircle2,
+          border: 'border-emerald-300/60 dark:border-emerald-700/60',
         };
       case 'Draft':
         return {
-          bg: 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800 hover:bg-amber-100 dark:hover:bg-amber-900/60',
-          dot: 'bg-amber-500',
+          textColor: 'text-amber-700 dark:text-amber-300',
+          dot: 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.7)]',
           icon: Clock,
+          border: 'border-amber-300/60 dark:border-amber-700/60',
         };
       case 'Expired':
         return {
-          bg: 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800 hover:bg-rose-100 dark:hover:bg-rose-900/60',
-          dot: 'bg-rose-500',
+          textColor: 'text-rose-700 dark:text-rose-300',
+          dot: 'bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.7)]',
           icon: AlertCircle,
+          border: 'border-rose-300/60 dark:border-rose-700/60',
         };
       default:
         return {
-          bg: 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700',
+          textColor: 'text-slate-700 dark:text-slate-300',
           dot: 'bg-slate-400',
           icon: Clock,
+          border: 'border-slate-300/60 dark:border-slate-700/60',
         };
     }
   };
@@ -35,8 +39,8 @@ export default function StatusBadge({ status, onChangeStatus, interactive = true
 
   if (!interactive) {
     return (
-      <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold border ${config.bg}`}>
-        <span className={`w-1.5 h-1.5 rounded-full ${config.dot}`} />
+      <span className={`neu-flat-sm inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${config.textColor} border ${config.border}`}>
+        <span className={`w-2 h-2 rounded-full ${config.dot}`} />
         <span>{status}</span>
       </span>
     );
@@ -47,14 +51,14 @@ export default function StatusBadge({ status, onChangeStatus, interactive = true
       <select
         value={status}
         onChange={(e) => onChangeStatus(e.target.value)}
-        className={`appearance-none pl-2.5 pr-6 py-1 rounded-full text-xs font-semibold border cursor-pointer transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-indigo-500 ${config.bg}`}
-        title="Click to change status"
+        className={`neu-btn appearance-none pl-3 pr-7 py-1.5 rounded-full text-xs font-bold cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500/40 ${config.textColor} border ${config.border}`}
+        title="Click to toggle status"
       >
-        <option value="Published" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Published</option>
-        <option value="Draft" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Draft</option>
-        <option value="Expired" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Expired</option>
+        <option value="Published" className="bg-[#ebf0f7] dark:bg-[#111625] text-slate-900 dark:text-white font-semibold">Published</option>
+        <option value="Draft" className="bg-[#ebf0f7] dark:bg-[#111625] text-slate-900 dark:text-white font-semibold">Draft</option>
+        <option value="Expired" className="bg-[#ebf0f7] dark:bg-[#111625] text-slate-900 dark:text-white font-semibold">Expired</option>
       </select>
-      <ChevronDown className="w-3 h-3 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none opacity-60 text-current" />
+      <ChevronDown className="w-3.5 h-3.5 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none opacity-70 text-current" />
     </div>
   );
 }
