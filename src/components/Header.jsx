@@ -1,11 +1,15 @@
 import React from 'react';
-import { GraduationCap, ExternalLink, RotateCcw, ShieldCheck, Sun, Moon } from 'lucide-react';
+import { GraduationCap, ExternalLink, RotateCcw, ShieldCheck, Sun, Moon, Eye, LayoutDashboard } from 'lucide-react';
 
-export default function Header({ onResetData, theme, onToggleTheme }) {
+export default function Header({ onResetClick, theme, onToggleTheme, activeTab, onTabChange }) {
   const isDark = theme === 'dark';
 
+  const handleOpenOfficialSite = () => {
+    window.open('https://www.k12hunar.com/scholarships', '_blank', 'noopener,noreferrer');
+  };
+
   return (
-    <header className="sticky top-0 z-30 transition-all duration-200 bg-[#ebf0f7]/90 dark:bg-[#111625]/90 backdrop-blur-md border-b border-white/50 dark:border-white/5 shadow-[0_4px_16px_rgba(202,213,226,0.4)] dark:shadow-[0_4px_16px_rgba(0,0,0,0.5)]">
+    <header className="sticky top-0 z-30 transition-all duration-200 bg-[#ebf0f7]/95 dark:bg-[#111625]/95 backdrop-blur-md border-b border-white/50 dark:border-white/5 shadow-[0_4px_16px_rgba(202,213,226,0.4)] dark:shadow-[0_4px_16px_rgba(0,0,0,0.5)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18">
           {/* Logo & Brand */}
@@ -20,15 +24,41 @@ export default function Header({ onResetData, theme, onToggleTheme }) {
                   CRM Portal
                 </span>
               </div>
-              <p className="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
+              <p className="text-xs text-slate-500 dark:text-slate-400 hidden md:block">
                 Scholarship Management & Student Application Dashboard
               </p>
             </div>
           </div>
 
+          {/* Center Navigation Mode Switcher: Admin CRM vs Student View */}
+          <div className="flex items-center neu-inset-sm p-1 rounded-2xl">
+            <button
+              onClick={() => onTabChange('admin')}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                activeTab === 'admin'
+                  ? 'neu-flat-sm text-indigo-700 dark:text-indigo-400'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white'
+              }`}
+            >
+              <LayoutDashboard className="w-3.5 h-3.5" />
+              <span>Admin CRM</span>
+            </button>
+            <button
+              onClick={() => onTabChange('student')}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                activeTab === 'student'
+                  ? 'neu-flat-sm text-indigo-700 dark:text-indigo-400'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white'
+              }`}
+            >
+              <Eye className="w-3.5 h-3.5" />
+              <span>Live Student View</span>
+            </button>
+          </div>
+
           {/* Right Header Actions */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Tactile Theme Toggle Button */}
+            {/* Theme Toggle Button */}
             <button
               onClick={onToggleTheme}
               className="neu-btn inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 rounded-xl cursor-pointer"
@@ -48,35 +78,25 @@ export default function Header({ onResetData, theme, onToggleTheme }) {
               )}
             </button>
 
-            {/* Tactile Reset Sample Data Button */}
+            {/* Reset Data Button with custom modal trigger */}
             <button
-              onClick={() => {
-                if (window.confirm('Reset all records back to the 9 original sample scholarships?')) {
-                  onResetData();
-                }
-              }}
+              onClick={onResetClick}
               title="Reset to 9 sample test records"
               className="neu-btn inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white rounded-xl cursor-pointer"
             >
               <RotateCcw className="w-3.5 h-3.5 text-indigo-500" />
-              <span className="hidden md:inline">Reset Data</span>
+              <span className="hidden lg:inline">Reset Data</span>
             </button>
 
-            {/* Live Website Link */}
-            <a
-              href="https://www.k12hunar.com/scholarships"
-              target="_blank"
-              rel="noreferrer"
-              className="neu-btn inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-indigo-600 dark:text-indigo-400 rounded-xl"
+            {/* Official External Website Link */}
+            <button
+              onClick={handleOpenOfficialSite}
+              title="Visit official portal at www.k12hunar.com/scholarships"
+              className="neu-btn inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-indigo-600 dark:text-indigo-400 rounded-xl cursor-pointer"
             >
-              <span>Live Website</span>
+              <span>Official Site</span>
               <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-
-            <div className="hidden lg:flex items-center gap-2 pl-3 border-l border-slate-300 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
-              <ShieldCheck className="w-4 h-4 text-emerald-500" />
-              <span>Admin Demo</span>
-            </div>
+            </button>
           </div>
         </div>
       </div>

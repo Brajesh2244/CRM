@@ -7,7 +7,7 @@ export default function ScholarshipCardView({
   onStatusChange,
   onPreview,
   onEdit,
-  onDelete,
+  onDeleteRequest,
 }) {
   const getStateBadge = (state) => {
     switch (state) {
@@ -105,11 +105,7 @@ export default function ScholarshipCardView({
                 <Edit3 className="w-3.5 h-3.5" />
               </button>
               <button
-                onClick={() => {
-                  if (window.confirm(`Delete "${sch.name}"?`)) {
-                    onDelete(sch.id);
-                  }
-                }}
+                onClick={() => onDeleteRequest(sch)}
                 className="neu-btn p-2 text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 rounded-xl cursor-pointer"
                 title="Delete"
               >

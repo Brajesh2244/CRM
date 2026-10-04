@@ -7,7 +7,7 @@ export default function ScholarshipTable({
   onStatusChange,
   onPreview,
   onEdit,
-  onDelete,
+  onDeleteRequest,
 }) {
   const getStateBadge = (state) => {
     switch (state) {
@@ -131,11 +131,7 @@ export default function ScholarshipTable({
 
                     {/* Delete button */}
                     <button
-                      onClick={() => {
-                        if (window.confirm(`Are you sure you want to remove "${sch.name}"?`)) {
-                          onDelete(sch.id);
-                        }
-                      }}
+                      onClick={() => onDeleteRequest(sch)}
                       className="neu-btn p-2 text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 rounded-xl cursor-pointer"
                       title="Delete record"
                     >
